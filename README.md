@@ -1,1 +1,1 @@
-# Laravel-Vuejs-Blogger
+# Laravel10-Vuejs-Blogger
