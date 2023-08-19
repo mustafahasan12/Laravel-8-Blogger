@@ -13,7 +13,6 @@
 <!-- Divider -->
 <hr class="sidebar-divider my-0">
 
-
 <li class="nav-item ">
     <a class="nav-link" href="{{ route('index') }}">
         <span>Website</span>
