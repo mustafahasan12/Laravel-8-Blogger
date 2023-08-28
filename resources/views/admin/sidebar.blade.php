@@ -21,11 +21,24 @@
 
 <!-- Nav Item - Dashboard -->
 <li class="nav-item active">
-    <a class="nav-link" href="index.html">
+    <a class="nav-link" href="{{ route('admin.dashboard') }}">
         <i class="fas fa-fw fa-tachometer-alt"></i>
         <span>Dashboard</span></a>
 </li>
 
+<!-- Nav Item - Dashboard -->
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('admin.role.list') }}">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>Role</span></a>
+</li>
+
+
+<li class="nav-item">
+    <a class="nav-link" href="{{ route('admin.user.list') }}">
+        <i class="fas fa-fw fa-tachometer-alt"></i>
+        <span>User</span></a>
+</li>
 
 <!-- Divider -->
 <hr class="sidebar-divider">

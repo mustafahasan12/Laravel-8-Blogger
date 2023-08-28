@@ -26,8 +26,17 @@
       </nav><!-- .navbar -->
 
       <div class="position-relative">
-        <a href="{{ route('login') }}" class="mx-2">Login</a>
-        <a href="{{ route('register') }}" class="mx-2">Signup</a>
+        @if( Auth::id() > 0 ) 
+          @if( Auth::user()->role_id == 1 ) 
+             <a href="/admin/dashboard" class="mx-2">{{ Auth::user()->name }}</a>
+          @else 
+              <a href="#" class="mx-2">{{ Auth::user()->name }}</a>
+          @endif
+          <a href="{{ route('Logout') }}" class="mx-2" > Logout </a>
+        @else  
+          <a href="{{ route('login') }}" class="mx-2">Login</a>
+          <a href="{{ route('register') }}" class="mx-2">Signup</a>
+        @endif  
 
         <a href="#" class="mx-2 js-search-open"><span class="bi-search"></span></a>
         <i class="bi bi-list mobile-nav-toggle"></i>
