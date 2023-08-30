@@ -30,6 +30,7 @@ Route::get('/about', [MainController::class, 'about'])->name('about');
 Route::get('/contact', [MainController::class, 'contact'])->name('contact');
 
 Route::post('/contactus/add', [MainController::class, 'contactusadd'])->name('admin.contactusadd');
+Route::get('/blog/detail/{id}', [MainController::class, 'blogdetail'])->name('blog.detail');
 
 
 Route::middleware(['auth'])->group(function () {

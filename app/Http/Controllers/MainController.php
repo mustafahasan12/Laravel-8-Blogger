@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Aboutus;
+use App\Models\Blog;
+use App\Models\Categories;
 use App\Models\Contact;
 use App\Models\DetailModel;
 use Session;
@@ -13,7 +15,10 @@ class MainController extends Controller
 {
     
     public function index() {
-        return view('index');
+        $blogsslide = Blog::with('user', 'category')->where('status', '1')->limit('4')->get();
+        $category = Categories::all();
+        $blogs = Blog::with('user', 'category')->where('status', '1')->get();
+        return view('index', compact('blogsslide', 'category', 'blogs'));
     }
 
     public function about() {
@@ -42,6 +47,15 @@ class MainController extends Controller
           return response()->json(['status' => '0', 'message' => 'something went wrong']);
         }  
 
+    }
+
+
+    public function blogdetail($id) {
+        $category = Categories::all();
+        $blogsslide = Blog::with('user', 'category')->where('status', '1')->limit('4')->get();
+        $blogs = Blog::with('user', 'category')->where('status', '1')->find($id);
+
+        return view('blogdetail', compact('category', 'blogsslide', 'blogs'));
     }
 
     
