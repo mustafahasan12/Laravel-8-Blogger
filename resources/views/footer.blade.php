@@ -1,4 +1,6 @@
- <!-- ======= Footer ======= -->
+<?php $info = App\Models\DetailModel::find(1) ?>
+
+<!-- ======= Footer ======= -->
  <footer id="footer" class="footer">
 
 <div class="footer-content">
@@ -18,17 +20,11 @@
         </ul>
       </div>
       <div class="col-6 col-lg-2">
-        <h3 class="footer-heading">Categories</h3>
+        <h3 class="footer-heading">Categories</h3>  
         <ul class="footer-links list-unstyled">
-          <li><a href="category.html"><i class="bi bi-chevron-right"></i> Business</a></li>
-          <li><a href="category.html"><i class="bi bi-chevron-right"></i> Culture</a></li>
-          <li><a href="category.html"><i class="bi bi-chevron-right"></i> Sport</a></li>
-          <li><a href="category.html"><i class="bi bi-chevron-right"></i> Food</a></li>
-          <li><a href="category.html"><i class="bi bi-chevron-right"></i> Politics</a></li>
-          <li><a href="category.html"><i class="bi bi-chevron-right"></i> Celebrity</a></li>
-          <li><a href="category.html"><i class="bi bi-chevron-right"></i> Startups</a></li>
-          <li><a href="category.html"><i class="bi bi-chevron-right"></i> Travel</a></li>
-
+          @foreach( App\Models\Categories::all() as $category )
+             <li><a href="category.html"><i class="bi bi-chevron-right"></i> {{ $category->name }} </a></li>
+          @endforeach   
         </ul>
       </div>
 
@@ -89,7 +85,7 @@
     <div class="row justify-content-between">
       <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
         <div class="copyright">
-          © Copyright <strong><span>ZenBlog</span></strong>. All Rights Reserved
+           <?= $info->copyright ?>
         </div>
 
         <div class="credits">
@@ -97,18 +93,18 @@
           <!-- You can delete the links only if you purchased the pro version. -->
           <!-- Licensing information: https://bootstrapmade.com/license/ -->
           <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/herobiz-bootstrap-business-template/ -->
-          Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+          Designed by <a href="https://stepsppoint.com/">StepsPoint</a>
         </div>
 
       </div>
 
       <div class="col-md-6">
         <div class="social-links mb-3 mb-lg-0 text-center text-md-end">
-          <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
-          <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-          <a href="#" class="google-plus"><i class="bi bi-skype"></i></a>
-          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
+          <a href="<?= $info->twitter_link ?>" class="twitter"><i class="bi bi-twitter"></i></a>
+          <a href="<?= $info->facebbok_link ?>" class="facebook"><i class="bi bi-facebook"></i></a>
+          <a href="<?= $info->instagram_link ?>" class="instagram"><i class="bi bi-instagram"></i></a>
+          <a href="<?= $info->skype_link ?>" class="google-plus"><i class="bi bi-skype"></i></a>
+          <a href="<?= $info->linkedin_link ?>" class="linkedin"><i class="bi bi-linkedin"></i></a>
         </div>
 
       </div>

@@ -39,7 +39,7 @@ class UserController extends Controller
             ]);
 
             if($user->id > 0) {
-                return redirect()->route('admin.user.list')->with('success', 'User Added');   ;
+                return redirect()->route('admin.user.list')->with('success', 'User Added');
             } else {
                 return Redirect::back()->withErrors(['error' => 'Something went Wrong']);
             }
@@ -62,7 +62,7 @@ class UserController extends Controller
             $role->role_id = $request->role;
             $role->save();
 
-            return redirect()->route('admin.user.list')->with('success', 'User Updated');   ;
+            return redirect()->route('admin.user.list')->with('success', 'User Updated');
 
         }
 

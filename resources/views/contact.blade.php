@@ -20,7 +20,7 @@
             <div class="info-item">
               <i class="bi bi-geo-alt"></i>
               <h3>Address</h3>
-              <address>A108 Adam Street, NY 535022, USA</address>
+              <address> {{ $detail->address }} </address>
             </div>
           </div><!-- End Info Item -->
 
@@ -28,7 +28,7 @@
             <div class="info-item info-item-borders">
               <i class="bi bi-phone"></i>
               <h3>Phone Number</h3>
-              <p><a href="tel:+155895548855">+1 5589 55488 55</a></p>
+              <p><a href="tel:{{ $detail->phone_no }}">{{ $detail->phone_no }}</a></p>
             </div>
           </div><!-- End Info Item -->
 
@@ -36,14 +36,15 @@
             <div class="info-item">
               <i class="bi bi-envelope"></i>
               <h3>Email</h3>
-              <p><a href="mailto:info@example.com">info@example.com</a></p>
+              <p><a href="mailto:{{ $detail->email }}">{{ $detail->email }}</a></p>
             </div>
           </div><!-- End Info Item -->
 
         </div>
 
         <div class="form mt-5">
-          <form action="forms/contact.php" method="post" role="form" class="php-email-form">
+          <form action="{{ route('admin.contactusadd') }}" method="post" role="form" class="php-email-form" id="contactus" >
+            @csrf
             <div class="row">
               <div class="form-group col-md-6">
                 <input type="text" name="name" class="form-control" id="name" placeholder="Your Name" required>
@@ -58,16 +59,40 @@
             <div class="form-group">
               <textarea class="form-control" name="message" rows="5" placeholder="Message" required></textarea>
             </div>
-            <div class="my-3">
-              <div class="loading">Loading</div>
               <div class="error-message"></div>
-              <div class="sent-message">Your message has been sent. Thank you!</div>
-            </div>
-            <div class="text-center"><button type="submit">Send Message</button></div>
+              <div class="sent-message"></div>
+            <div class="text-center"><button type="button" id="btnsub" >Send Message</button></div>
           </form>
         </div><!-- End Contact Form -->
 
       </div>
     </section>
+
+    <script>
+
+      $('#btnsub').click(function(event) {
+          event.preventDefault(); // Prevent the form from submitting via the browser
+          var form = $('#contactus');
+;
+          $.ajax({
+            type: form.attr('method'),
+            url: form.attr('action'),
+            data: form.serialize(),
+            success: function(response){
+              if(response.status == 1) {
+                Swal.fire(
+                  'Contactus!',
+                  response.message,
+                  'success'
+                )
+              }
+            }  
+        });    
+      });
+    
+
+
+    </script>
+
 
 @endsection

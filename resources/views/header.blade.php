@@ -13,10 +13,9 @@
           <li><a href="{{ route('index') }}">Home</a></li>
           <li class="dropdown"><a href="category.html"><span>Categories</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
             <ul>
-              <li><a href="#">Drop Down 1</a></li>
-              <li><a href="#">Drop Down 2</a></li>
-              <li><a href="#">Drop Down 3</a></li>
-              <li><a href="#">Drop Down 4</a></li>
+              @foreach( App\Models\Categories::all() as $category )
+                 <li><a href="#"> {{ $category->name }} </a></li>
+              @endforeach   
             </ul>
           </li>
 
@@ -27,12 +26,8 @@
 
       <div class="position-relative">
         @if( Auth::id() > 0 ) 
-          @if( Auth::user()->role_id == 1 ) 
-             <a href="/admin/dashboard" class="mx-2">{{ Auth::user()->name }}</a>
-          @else 
-              <a href="#" class="mx-2">{{ Auth::user()->name }}</a>
-          @endif
-          <a href="{{ route('Logout') }}" class="mx-2" > Logout </a>
+            <a href="/admin/dashboard" class="mx-2">{{ Auth::user()->name }}</a>
+            <a href="{{ route('Logout') }}" class="mx-2" > Logout </a>
         @else  
           <a href="{{ route('login') }}" class="mx-2">Login</a>
           <a href="{{ route('register') }}" class="mx-2">Signup</a>
